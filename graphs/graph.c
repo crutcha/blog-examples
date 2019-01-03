@@ -5,14 +5,16 @@
  * but we will also allow a way to dynamically resize the node's link array.
  */
 
-#include <stdio.h>
+#include <stdbool.h>
 
 struct graph {
-    int vertices;
+    int nodecount;
     struct node **nodes;
 };
 
 struct node {
-    int visited;
-    int node;
+    bool visited;
+    struct node *next;
 };
+
+struct graph
