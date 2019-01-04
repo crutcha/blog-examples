@@ -29,11 +29,11 @@ func NewGraph() Graph {
 }
 
 func NewNode(name string) *Node {
-	node := Node{
+	node := &Node{
 		name:    name,
 		visited: false,
 	}
-	return &node
+	return node
 }
 
 func (g *Graph) AddNode(node *Node) {
