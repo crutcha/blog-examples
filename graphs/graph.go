@@ -44,7 +44,8 @@ func (g *Graph) AddNode(node *Node) {
 func (g *Graph) AddEdge(src *Node, dst *Node, weight int) error {
 	var error error
 
-	// double check we actually have that node
+	// double check we actually have that node for both source and
+	// dest before processing
 	if _, ok := g.nodes[src]; ok {
 		newEdge := &Edge{
 			dest:   dst,
@@ -56,5 +57,17 @@ func (g *Graph) AddEdge(src *Node, dst *Node, weight int) error {
 		return error
 	}
 
+	if _, ok := g.nodes[dst]; ok {
+		newEdge := &Edge{
+			dest:   src,
+			weight: weight,
+		}
+		g.nodes[dst] = append(g.nodes[dst], newEdge)
+	} else {
+		error = errors.New("Destination node does not exists in graph.")
+		return error
+	}
+
+	// this seems redundant and stupid?
 	return error
 }
