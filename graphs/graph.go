@@ -12,9 +12,9 @@ type Node struct {
 }
 
 /*
-Since this will be an adjacency list implementation, the source will
-already be known since it will be the key in graph.nodes, we only need
-the destination
+Since this will be an edge list implementation, the source will
+already be known since it will be the key in graph.nodes, we only
+need the destination.
 */
 type Edge struct {
 	dest   *Node

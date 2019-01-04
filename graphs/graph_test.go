@@ -3,9 +3,13 @@ package main
 import (
 	"fmt"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestGraph(t *testing.T) {
+	assert := assert.New(t)
+
 	graph := NewGraph()
 	firstNode := NewNode("testnode")
 	secondNode := NewNode("secondnode")
@@ -17,6 +21,7 @@ func TestGraph(t *testing.T) {
 
 	//fmt.Println(graph.nodes)
 	//fmt.Println(firstNode)
+	assert.Equal(1, len(graph.nodes[firstNode]))
 
 	for k, v := range graph.nodes {
 		fmt.Println("Key: ", k)
