@@ -46,6 +46,8 @@ func (g *Graph) AddNode(name string) {
 func (g *Graph) AddEdge(src string, dst string, weight int) error {
 	var error error
 
+	// TODO: loop through edges and check if it's a duplicate and ignore?
+
 	// double check we actually have that node for both source and
 	// dest before processing
 	if _, ok := g.nodes[src]; ok {
@@ -78,7 +80,7 @@ func (g *Graph) String() {
 	for node, edges := range g.nodes {
 		fmt.Printf("%-15s", node)
 
-		fmt.Printf("[")
+		fmt.Printf("[ ")
 		for _, edge := range edges {
 			fmt.Printf("(%s, ", edge.dest)
 			fmt.Printf("%d) ", edge.weight)

@@ -1,18 +1,47 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
-type PathTable struct {
-	dest map[string]int
-	prev map[string]int
-	cost int
+type PathVector struct {
+	dest string
+	prev string
+	cost float64
 }
 
-func (p *PathTable) String() {
-	fmt.Println("not implemented yet")
+type PathTable struct {
+	paths map[string]PathVector
+}
+
+func (pt *PathTable) String() {
+	fmt.Println("not quite yet")
 }
 
 func (g *Graph) DijkstraPaths(src string) PathTable {
-	fmt.Println("yep")
-	return PathTable{}
+	visitMap := make(map[string]bool)
+	pathMap := make(map[string]PathVector)
+
+	// Used to track whether or not a specific node has been
+	// visited yet or not.
+	for node, _ := range g.nodes {
+		visitMap[node] = false
+
+		// Set initial cost to infinity unless the current
+		// node is our own
+		if node == src {
+			pathMap[node] = PathVector{
+				dest: node,
+				cost: 0,
+			}
+		} else {
+			pathMap[node] = PathVector{
+				dest: node,
+				cost: math.Inf(1),
+			}
+		}
+	}
+
+	return PathTable{paths: pathMap}
 }
