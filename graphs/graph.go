@@ -1,14 +1,12 @@
 package main
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
 type Graph struct {
-	nodes map[*Node][]*Edge
-}
-
-type Node struct {
-	visited bool
-	name    string
+	nodes map[string][]*Edge
 }
 
 /*
@@ -17,17 +15,18 @@ already be known since it will be the key in graph.nodes, we only
 need the destination.
 */
 type Edge struct {
-	dest   *Node
+	dest   string
 	weight int
 }
 
 func NewGraph() Graph {
-	nodes := make(map[*Node][]*Edge)
+	nodes := make(map[string][]*Edge)
 	return Graph{
 		nodes: nodes,
 	}
 }
 
+/*
 func NewNode(name string) *Node {
 	node := &Node{
 		name:    name,
@@ -35,13 +34,16 @@ func NewNode(name string) *Node {
 	}
 	return node
 }
+*/
 
-func (g *Graph) AddNode(node *Node) {
+func (g *Graph) AddNode(name string) {
+	// TODO: do we care to check if node exists already and return
+	// an error instead?
 	var edges []*Edge
-	g.nodes[node] = edges
+	g.nodes[name] = edges
 }
 
-func (g *Graph) AddEdge(src *Node, dst *Node, weight int) error {
+func (g *Graph) AddEdge(src string, dst string, weight int) error {
 	var error error
 
 	// double check we actually have that node for both source and
@@ -70,4 +72,17 @@ func (g *Graph) AddEdge(src *Node, dst *Node, weight int) error {
 
 	// this seems redundant and stupid?
 	return error
+}
+
+func (g *Graph) String() {
+	for node, edges := range g.nodes {
+		fmt.Printf("%-15s", node)
+
+		fmt.Printf("[")
+		for _, edge := range edges {
+			fmt.Printf("(%s, ", edge.dest)
+			fmt.Printf("%d) ", edge.weight)
+		}
+		fmt.Printf("]\n")
+	}
 }
