@@ -1,8 +1,12 @@
 package main
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestDijkstraPathTable(t *testing.T) {
+	fmt.Println("here")
 	graph := NewGraph()
 
 	graph.AddNode("1.1.1.1")
@@ -21,4 +25,6 @@ func TestDijkstraPathTable(t *testing.T) {
 	graph.AddEdge("5.5.5.5", "6.6.6.6", 10)
 
 	graph.String()
+	graph.DijkstraPaths("1.1.1.1")
+	fmt.Println("done")
 }
