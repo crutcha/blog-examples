@@ -46,16 +46,10 @@ func (g *Graph) DijkstraPaths(src string) PathTable {
 		}
 	}
 
-	fmt.Println("wut")
 	// start PQ with source node weight of 0
 	heap.Push(&pq, Edge{dest: "5.5.5.5", weight: 10})
 	heap.Push(&pq, Edge{dest: "1.1.1.1", weight: 0})
-	fmt.Println("NOW: ", pq)
 	heap.Push(&pq, Edge{dest: "2.2.2.2", weight: 1})
-	fmt.Println("NOW: ", pq)
-	popped := heap.Pop(&pq)
-	fmt.Println("POPPPED: ", popped)
-	fmt.Println("NOW: ", pq)
 
 	// Start traversing breadth-first through all nodes in map
 	// starting with our own
