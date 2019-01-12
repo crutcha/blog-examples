@@ -1,7 +1,7 @@
 // priority queue interface to be used by graph structs
 package main
 
-type EdgePQ []Edge
+type EdgePQ []*Edge
 
 func (pq EdgePQ) Len() int {
 	return len(pq)
@@ -17,7 +17,7 @@ func (pq EdgePQ) Swap(i, j int) {
 }
 
 func (pq *EdgePQ) Push(x interface{}) {
-	item := x.(Edge)
+	item := x.(*Edge)
 	*pq = append(*pq, item)
 }
 
