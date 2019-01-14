@@ -75,3 +75,23 @@ func (g *Graph) DijkstraPaths(src string) PathTable {
 
 	return PathTable{paths: pathMap}
 }
+
+func (g *Graph) ShortestPath(src string, dest string) []string {
+	table := g.DijkstraPaths(src)
+	path := []string{dest}
+	previous := dest
+
+	for previous != src {
+		thisPath := table.paths[previous]
+		path = append(path, thisPath.prev)
+		previous = thisPath.prev
+	}
+
+	// order will be reversed
+	for i, j := 0, len(path)-1; i < j; i, j = i+1, j-1 {
+		path[i], path[j] = path[j], path[i]
+
+	}
+
+	return path
+}
