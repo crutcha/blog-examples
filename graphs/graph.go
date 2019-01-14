@@ -26,16 +26,6 @@ func NewGraph() Graph {
 	}
 }
 
-/*
-func NewNode(name string) *Node {
-	node := &Node{
-		name:    name,
-		visited: false,
-	}
-	return node
-}
-*/
-
 func (g *Graph) AddNode(name string) {
 	// TODO: do we care to check if node exists already and return
 	// an error instead?

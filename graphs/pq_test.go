@@ -2,14 +2,12 @@ package main
 
 import (
 	"container/heap"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
 func TestPriorityQueue(t *testing.T) {
-	fmt.Println("testing")
 	assert := assert.New(t)
 	pq := make(EdgePQ, 0)
 
