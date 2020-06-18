@@ -8,6 +8,7 @@ import (
 	"io"
 	"math/rand"
 	"net"
+	"encoding/json"
 	"net/http"
 	"os"
 	"sync"
@@ -86,7 +87,8 @@ func main() {
 	}
 	for _, result := range res {
 		if result.TCPInfo != nil {
-			fmt.Printf("%+v\n", *result.TCPInfo)
+		    out, _ := json.Marshal(*result)
+			fmt.Println(string(out))
 		}
 	}
 }
