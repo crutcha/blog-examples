@@ -44,7 +44,7 @@ func myControl(network, address string, c syscall.RawConn) error {
 	})
 }
 
-func main() {
+func oldmain() {
 	var wg sync.WaitGroup
 
 	for i := 1; i <= CONCURRENT_DOWNLOADS; i++ {
@@ -77,4 +77,16 @@ func main() {
 	time.Sleep(30 * time.Second)
 	res, _ := netlink.SocketDiagTCPInfo(1)
 	fmt.Println(res)
+}
+
+func main() {
+	res, diagErr := netlink.SocketDiagTCPInfo(unix.AF_INET)
+	if diagErr != nil {
+		panic(diagErr)
+	}
+	for _, result := range res {
+		if result.TCPInfo != nil {
+			fmt.Printf("%+v\n", *result.TCPInfo)
+		}
+	}
 }
