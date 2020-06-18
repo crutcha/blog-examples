@@ -3,6 +3,7 @@ package main
 import (
 	// "bufio"
 	"fmt"
+	"github.com/vishvananda/netlink"
 	"golang.org/x/sys/unix"
 	"io"
 	"math/rand"
@@ -74,4 +75,6 @@ func main() {
 
 	// for demo purposes only, since TCP socket cleanup may not be instant
 	time.Sleep(30 * time.Second)
+	res, _ := netlink.SocketDiagTCPInfo(1)
+	fmt.Println(res)
 }
