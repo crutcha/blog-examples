@@ -9,4 +9,4 @@ require (
 	golang.org/x/sys v0.0.0-20200615200032-f1bc736245b1
 )
 
-replace github.com/vishvananda/netlink => github.com/crutcha/netlink v1.0.1-0.20200603195430-5b160c99dadc
+replace github.com/vishvananda/netlink => github.com/crutcha/netlink v1.0.1-0.20200618161744-9f7fe3e78ae7
