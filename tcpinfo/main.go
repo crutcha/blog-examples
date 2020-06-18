@@ -2,13 +2,13 @@ package main
 
 import (
 	// "bufio"
+	"encoding/json"
 	"fmt"
 	"github.com/vishvananda/netlink"
 	"golang.org/x/sys/unix"
 	"io"
 	"math/rand"
 	"net"
-	"encoding/json"
 	"net/http"
 	"os"
 	"sync"
@@ -85,10 +85,14 @@ func main() {
 	if diagErr != nil {
 		panic(diagErr)
 	}
-	for _, result := range res {
-		if result.TCPInfo != nil {
-		    out, _ := json.Marshal(*result)
-			fmt.Println(string(out))
+	out, _ := json.Marshal(res)
+	fmt.Println(string(out))
+	/*
+		for _, result := range res {
+			if result.TCPInfo != nil {
+			    out, _ := json.Marshal(*result)
+				fmt.Println(string(out))
+			}
 		}
-	}
+	*/
 }
